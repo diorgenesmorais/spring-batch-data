@@ -5,10 +5,10 @@ services:
       - "3306:3306"
     volumes:
       - batch_data:/var/lib/mysql
+      - ./init-scripts:/docker-entrypoint-initdb.d
     restart: always
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_DATABASE: "spring_batch"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
